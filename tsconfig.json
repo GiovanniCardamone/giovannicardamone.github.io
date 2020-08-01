@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfigpaths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
