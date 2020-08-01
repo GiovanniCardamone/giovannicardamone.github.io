@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/giovannicardamone/static/css/main.5f361e03.chunk.css",
+    "main.js": "/giovannicardamone/static/js/main.42f4460d.chunk.js",
+    "main.js.map": "/giovannicardamone/static/js/main.42f4460d.chunk.js.map",
+    "runtime-main.js": "/giovannicardamone/static/js/runtime-main.2e0cc7e9.js",
+    "runtime-main.js.map": "/giovannicardamone/static/js/runtime-main.2e0cc7e9.js.map",
+    "static/js/2.d3c84794.chunk.js": "/giovannicardamone/static/js/2.d3c84794.chunk.js",
+    "static/js/2.d3c84794.chunk.js.map": "/giovannicardamone/static/js/2.d3c84794.chunk.js.map",
+    "index.html": "/giovannicardamone/index.html",
+    "precache-manifest.3f45f3edf98954b8ef9bfd1cb93fbfd9.js": "/giovannicardamone/precache-manifest.3f45f3edf98954b8ef9bfd1cb93fbfd9.js",
+    "service-worker.js": "/giovannicardamone/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/giovannicardamone/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.d3c84794.chunk.js.LICENSE.txt": "/giovannicardamone/static/js/2.d3c84794.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/giovannicardamone/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2e0cc7e9.js",
+    "static/js/2.d3c84794.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.42f4460d.chunk.js"
+  ]
+}
