@@ -7,5 +7,5 @@
       ":components/*": ["./components/*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.tsx"]
+  "include": ["./**/*.ts", "./**/*.tsx", "./src/typings/**/*.d.ts"]
 }
