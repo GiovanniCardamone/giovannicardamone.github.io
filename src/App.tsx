@@ -184,8 +184,8 @@ export default function App() {
           <div className={classes.drawerContainer}>
             <List>
               {routes.map(({ icon, text, path, separator }, index) => (
-                <Fragment>
-                  <Link key={path} to={path} className={classes.drawerLink}>
+                <Fragment key={path}>
+                  <Link to={path} className={classes.drawerLink}>
                     <ListItem button>
                       <ListItemIcon>{icon}</ListItemIcon>
                       <ListItemText primary={text} />
