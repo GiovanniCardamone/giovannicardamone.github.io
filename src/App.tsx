@@ -132,19 +132,19 @@ export default function App() {
       {
         icon: <HomeIcon />,
         text: 'Home',
-        path: '/home',
+        path: '/#/home',
         page: <Home />,
       },
       {
         icon: <CurriculumIcon />,
         text: 'Curriculum',
-        path: '/curriculum',
+        path: '/#/curriculum',
         page: <Curriculum />,
       },
       {
         icon: <ContactIcon />,
         text: 'Contatti',
-        path: '/contact',
+        path: '/#/contact',
         page: <Contact />,
         separator: true,
       },
@@ -201,7 +201,7 @@ export default function App() {
           <Toolbar />
           <Switch>
             <Route exact path='/'>
-              <Redirect to='/home' />
+              <Redirect to='/#/home' />
             </Route>
 
             {routes.map(({ path, page }, index) => (
