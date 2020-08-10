@@ -1,6 +1,6 @@
 {
-  "short_name": "Giovanni Cardamone",
-  "name": "Giovanni Cardamone Personal WebApp",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",

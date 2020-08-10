@@ -2,10 +2,10 @@ import { red } from '@material-ui/core/colors'
 import { createMuiTheme } from '@material-ui/core/styles'
 
 // A custom theme for this app
-const theme = createMuiTheme({
+export default createMuiTheme({
   palette: {
     primary: {
-      main: '#424242',
+      main: '#5E66D3',
     },
     secondary: {
       main: '#00838f',
@@ -18,5 +18,3 @@ const theme = createMuiTheme({
     },
   },
 })
-
-export default theme

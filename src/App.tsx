@@ -1,181 +1,125 @@
-import React, { Fragment, useState, useMemo } from 'react'
-import clsx from 'clsx'
-import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import {
-  Avatar,
-  AppBar,
-  Toolbar,
-  Drawer,
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
-  Chip,
-  Hidden,
-} from '@material-ui/core'
+import React, { Fragment, useState, useEffect } from 'react'
+import { HashRouter, Route, Switch, Link, Redirect } from 'react-router-dom'
 
-import Curriculum from ':routes/Curriculum'
-import Home from ':routes/Home'
-import Contact from ':routes/Contact'
-import NoMatch from ':routes/NoMatch'
+import pages from './assets/pages'
+import projects, { Project, GitHubProject } from './assets/projects'
 
-import HomeIcon from '@material-ui/icons/Home'
-import CurriculumIcon from '@material-ui/icons/InsertDriveFile'
-import ContactIcon from '@material-ui/icons/AlternateEmail'
+import Box from '@material-ui/core/Box'
+import Avatar from '@material-ui/core/Avatar'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
+import SvgIcon from '@material-ui/core/SvgIcon'
+import Badge from '@material-ui/core/Badge'
+import Typography from '@material-ui/core/Typography'
+import Skeleton from '@material-ui/lab/Skeleton'
 
-import avatar from './images/avatar2.jpg'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import GitHubIcon from '@material-ui/icons/GitHub'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import InstagramIcon from '@material-ui/icons/Instagram'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 
-// import GitHub, { User } from 'github-api'
+import NoMatch from './pages/NoMatch'
 
-const drawer = (theme: Theme) => {
-  return {
-    [theme.breakpoints.up('sm')]: {
-      width: 240,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    [theme.breakpoints.down('sm')]: {
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      overflowX: 'hidden',
-      width: theme.spacing(7) + 1,
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9) + 1,
-      },
-    },
-  }
+import DefaultProjectIcon from '@material-ui/icons/Computer'
+
+const drawerWidth = 240
+const useAppStyle = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  appbar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  toolbar: {},
+  avatar: {
+    marginRight: theme.spacing(1),
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+  },
+  drawerlink: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
+  drawerSeparator: {
+    backgroundColor: theme.palette.grey[100],
+  },
+  content: {
+    flexGrow: 1,
+    marginLeft: drawerWidth,
+    padding: theme.spacing(3),
+  },
+}))
+
+interface StarProps {
+  project: Project
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    title: {
-      marginLeft: '0.5em',
-    },
-    chips: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      flexGrow: 1,
-      flexWrap: 'wrap',
-      '& > *': {
-        margin: theme.spacing(0.5),
-      },
-    },
-    drawer: {
-      flexShrink: 0,
-      ...drawer(theme),
-    },
-    drawerLink: {
-      color: 'inherit',
-      textDecoration: 'none',
-    },
-    drawerPaper: {
-      ...drawer(theme),
-    },
-    drawerContainer: {
-      overflow: 'auto',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  })
-)
+const ProjectItem = ({ project }: StarProps) => {
+  const [info, setInfo] = useState<GitHubProject>()
 
-export default function App() {
-  const classes = useStyles()
-
-  const chips = useMemo(() => {
-    return [
-      {
-        icon: <GitHubIcon style={{ color: '#24292e' }} />,
-        text: 'GitHub',
-        link: 'https://github.com/GiovanniCardamone',
-      },
-      {
-        icon: <LinkedInIcon style={{ color: '#0e76a8' }} />,
-        text: 'LinkedIn',
-        link: 'https://www.linkedin.com/in/giovanni-cardamone-41306973/',
-      },
-      {
-        icon: <FacebookIcon style={{ color: '#3b5998' }} />,
-        text: 'Facebook',
-        link: 'https://www.facebook.com/G.Cardamone2',
-      },
-      {
-        icon: <InstagramIcon style={{ color: '#cd486b' }} />,
-        text: 'Instagram',
-        link: 'https://instagram.com/giovannicardamone/',
-      },
-    ]
-  }, [])
-
-  const routes = useMemo(() => {
-    return [
-      {
-        icon: <HomeIcon />,
-        text: 'Home',
-        path: '/#/home',
-        page: <Home />,
-      },
-      {
-        icon: <CurriculumIcon />,
-        text: 'Curriculum',
-        path: '/#/curriculum',
-        page: <Curriculum />,
-      },
-      {
-        icon: <ContactIcon />,
-        text: 'Contatti',
-        path: '/#/contact',
-        page: <Contact />,
-        separator: true,
-      },
-    ]
-  }, [])
-
-  const handleChipClick = (link: string) => {
-    window.location.href = link
-  }
+  useEffect(() => {
+    fetch(`https://api.github.com/repos/${project.owner}/${project.repo}`)
+      .then((r) => r.json())
+      .then((r) => {
+        setInfo(r)
+      })
+  }, [project])
 
   return (
-    <BrowserRouter>
-      <div className={classes.root}>
-        <AppBar position='fixed' className={classes.appBar}>
-          <Toolbar>
-            <Avatar src={avatar} />
-            <Typography variant='h6' noWrap className={classes.title}>
-              Giovanni Cardamone
-            </Typography>
-            <Hidden mdDown>
-              <div className={classes.chips}>
-                {chips.map(({ icon, text, link }, index) => (
-                  <Chip key={index} icon={icon} label={text} onClick={() => handleChipClick(link)} />
-                ))}
-              </div>
-            </Hidden>
+    <ListItem button onClick={() => window.open(project.url, '_blank')}>
+      {info !== undefined ? (
+        <Fragment>
+          <ListItemIcon>
+            <Badge badgeContent={info.stargazers_count} color='secondary'>
+              {project.icon ? project.icon : <DefaultProjectIcon />}
+            </Badge>
+          </ListItemIcon>
+          <ListItemText primary={info.name} />
+        </Fragment>
+      ) : (
+        <Box width={1}>
+          <Skeleton variant='text' animation='wave' height={10} width='96%' />
+          <Skeleton variant='text' animation='wave' height={10} width='38%' />
+        </Box>
+      )}
+    </ListItem>
+  )
+}
+
+interface AppProps {}
+
+export default function App() {
+  const classes = useAppStyle()
+
+  return (
+    <div className={classes.root}>
+      <HashRouter>
+        <AppBar className={classes.appbar}>
+          <Toolbar className={classes.toolbar}>
+            <Avatar
+              className={classes.avatar}
+              src='https://avatars0.githubusercontent.com/u/5117748?s=460&u=d3e29f822ff593d2e796a3c69f3ef58dabf0733a&v=4'
+            />
+            <Typography variant='h6'>Giovanni Cardamone</Typography>
           </Toolbar>
         </AppBar>
         <Drawer
-          variant='permanent'
           className={classes.drawer}
+          variant='permanent'
           classes={{
             paper: classes.drawerPaper,
           }}
@@ -183,16 +127,26 @@ export default function App() {
           <Toolbar />
           <div className={classes.drawerContainer}>
             <List>
-              {routes.map(({ icon, text, path, separator }, index) => (
-                <Fragment key={path}>
-                  <Link to={path} className={classes.drawerLink}>
-                    <ListItem button>
-                      <ListItemIcon>{icon}</ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItem>
-                  </Link>
-                  {separator ? <Divider /> : null}
-                </Fragment>
+              {pages.map((page, pageIndex) => (
+                <Link key={pageIndex} to={page.url} className={classes.drawerlink}>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <SvgIcon component={page.icon} />
+                    </ListItemIcon>
+                    <ListItemText primary={page.name} />
+                  </ListItem>
+                </Link>
+              ))}
+            </List>
+            <Divider />
+            <Box className={classes.drawerSeparator}>
+              <Typography align='center' variant='subtitle2'>
+                MY GITHUB PROJECTS
+              </Typography>
+            </Box>
+            <List>
+              {projects.map((project, projectIndex) => (
+                <ProjectItem key={projectIndex} project={project} />
               ))}
             </List>
           </div>
@@ -201,13 +155,11 @@ export default function App() {
           <Toolbar />
           <Switch>
             <Route exact path='/'>
-              <Redirect to='/#/home' />
+              <Redirect to='/home' />
             </Route>
 
-            {routes.map(({ path, page }, index) => (
-              <Route key={index} path={path}>
-                {page}
-              </Route>
+            {pages.map(({ url, Component }, pageIndex) => (
+              <Route key={pageIndex} exact path={url} render={() => <Component />} />
             ))}
 
             <Route path='*'>
@@ -215,7 +167,7 @@ export default function App() {
             </Route>
           </Switch>
         </main>
-      </div>
-    </BrowserRouter>
+      </HashRouter>
+    </div>
   )
 }
