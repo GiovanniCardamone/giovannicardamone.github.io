@@ -1,16 +1,8 @@
-import React, { JSXElementConstructor } from 'react'
-
-import { OverridableComponent } from '@material-ui/core/OverridableComponent'
-import { SvgIconTypeMap } from '@material-ui/core/SvgIcon/SvgIcon'
-
-import FastifyAutoroutesIcon from '@material-ui/icons/Http'
-
 export interface Project {
   // label: string
   url: string
   owner: string
   repo: string
-  icon?: JSX.Element
 }
 
 const projects: Project[] = [
@@ -18,7 +10,6 @@ const projects: Project[] = [
     url: 'https://github.com/GiovanniCardamone/fastify-autoroutes',
     owner: 'GiovanniCardamone',
     repo: 'fastify-autoroutes',
-    icon: <FastifyAutoroutesIcon />,
   },
 ]
 

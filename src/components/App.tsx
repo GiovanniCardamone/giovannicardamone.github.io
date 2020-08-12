@@ -29,6 +29,7 @@ const drawerWidth = 240
 const useAppStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: '100%',
   },
   appbar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -59,8 +60,9 @@ const useAppStyle = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    height: '100%',
     marginLeft: drawerWidth,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(),
   },
 }))
 
@@ -72,11 +74,12 @@ const ProjectItem = ({ project }: StarProps) => {
   const [info, setInfo] = useState<GitHubProject>()
 
   useEffect(() => {
-    fetch(`https://api.github.com/repos/${project.owner}/${project.repo}`)
-      .then((r) => r.json())
-      .then((r) => {
-        setInfo(r)
-      })
+    if (process.env.NODE_ENV === 'production')
+      fetch(`https://api.github.com/repos/${project.owner}/${project.repo}`)
+        .then((r) => r.json())
+        .then((r) => {
+          setInfo(r)
+        })
   }, [project])
 
   return (
@@ -152,7 +155,6 @@ export default function App() {
           </div>
         </Drawer>
         <main className={classes.content}>
-          <Toolbar />
           <Switch>
             <Route exact path='/'>
               <Redirect to='/home' />
