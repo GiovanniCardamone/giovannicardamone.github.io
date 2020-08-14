@@ -9,6 +9,19 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "none",
-  "contributors": [],
+  "contributors": [
+    {
+      "login": "genbs",
+      "name": "Gennaro Bosone",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6159598?v=4",
+      "profile": "https://www.desidus.it/",
+      "contributions": [
+        "code",
+        "content",
+        "design",
+        "ideas"
+      ]
+    }
+  ],
   "contributorsPerLine": 7
 }
