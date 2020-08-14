@@ -30,7 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build && rm -rf docs  && mv build docs",
     "eject": "react-scripts eject",
-    "publish": "npm run build && git add . && git commit -m 'publishing' && git push"
+    "publish": "date >> CHANGELOG && npm run build && git add . && git commit -m 'publishing' && git push"
   },
   "eslintConfig": {
     "extends": "react-app"
