@@ -1,0 +1,220 @@
+@import 
+	'./variables.scss',
+	'./font.scss',
+	'./projects.scss'
+;
+
+
+
+* { box-sizing: border-box; }
+
+*:not(input) {
+	user-select: none;
+}
+
+html {
+	font-size: 18px;
+	margin: 0;
+	background: $bg;
+	background: linear-gradient(to bottom, $bg 60%, darken($bg, 3%));
+	min-height: 100vh; 
+}
+
+body {
+	margin: 0;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	overflow-x: hidden;
+	
+	color:  #fff;
+    
+
+	font-family: 'GT America';
+	font-weight: 100;
+	line-height: 1.618;
+}
+
+main.mobile {
+	width: 100vw;
+	min-height: 100vh; 
+	padding: 2rem;
+}
+main.desktop {
+	width: 100vw;
+    height: 100vh; 
+    padding: 6vw;
+    display: grid;
+    grid-template-columns: auto 16vw;
+    grid-template-rows: auto max-content;
+    grid-gap: 6vw;
+}
+
+.center-section {
+	display: grid;
+	grid-template-rows: max-content auto; 
+	grid-template-columns: 100%;
+	grid-gap: 6vw;
+	width: calc(100vw - 16vw - 6vw - 12vw);
+}
+
+.desktop {
+	.h3{
+		width: auto;
+		height: 2.6vw;
+		margin: 0 0 2rem 0;
+		stroke: #fff;
+		stroke-width: 0.3;
+		stroke-dashoffset: 100000;
+		fill: none;
+		path { opacity: 0; }
+	}
+}
+
+.mobile {
+	.h3{
+		width: auto;
+		height: 4vh;
+		margin: 2.8rem auto 1.618rem;
+		stroke: #fff;
+		stroke-width: 0.3;
+		stroke-dashoffset: 100000;
+		fill: none;
+		display: block;
+		path { opacity: 0; }
+	}
+}
+
+@media screen and (max-width: 1366px) {
+	html { font-size: 14px; }
+	main.desktop { 
+		padding: 3vw; grid-gap: 3vw; 
+
+		.center-section { grid-gap: 3vw; width: calc(100vw - 16vw - 3vw - 6vw); }
+		.h3{ margin: 0 0 1rem; }
+	}
+}
+@media screen and (min-width: 1366px) and (max-width: 1920px) {
+	html { font-size: 16px; }
+	main.desktop { 
+		padding: 6vw; grid-gap: 6vw; 
+
+		.center-section { grid-gap: 6vw; width: calc(100vw - 16vw - 6vw - 12vw); }
+		.h3{ margin: 0 0 2rem; }
+	}
+}
+
+
+
+.outlined {
+	color: #fff;
+}
+
+@supports (-webkit-text-stroke: 1px $bg) {
+	.outlined {
+		letter-spacing: 1px;
+		-webkit-text-stroke: 1px #fff;
+		-webkit-text-fill-color: $bg;
+	}
+}
+
+svg, h1, h2, h3 {
+	line-height: 1;
+	margin: 0;
+}
+
+
+a, a:visited {
+	display: inline-block;
+	color: $primary;
+	text-decoration: none;
+	font-weight: 600;
+
+	svg path { stroke: $primary; }
+}
+
+section { width: 100%;  }
+
+
+.a-button, .a-button:visited {
+	color: #fff;
+	border: 1px solid #fff;
+	padding: 0.6rem .9rem 0.7rem;
+	border-radius: 1px;
+	line-height: 1;
+	display: inline-block;
+}
+
+.mobile .socials {
+	> * + * { margin-left: 1.618rem; }
+}
+
+.socials {
+	font-size: 0;
+	
+	> * {
+		display: inline-block;
+		font-size: 0;
+		> div {
+			padding: 0.2rem;
+		}
+
+		+ * { margin-left: 0.5rem; }
+	}
+
+	svg { 
+		display: inline-block;
+		height: 1.618rem;
+
+		path { stroke: transparent; }
+	}
+}
+
+#bio_text a {
+	padding: 0 0.1rem;
+}
+
+@keyframes appear {
+	from { opacity: 0; transform: translate(10%, 0); }
+	to { opacity: 1; transform: translate(0%, 0); }
+}
+@keyframes appear2 {
+	from { opacity: 0; transform: translate(0, -10%); }
+	to { opacity: 1; transform: translate(0, 0%); }
+}
+@keyframes appear3 {
+	from { opacity: 0; transform: translateY(10%) skewY(2deg); }
+	to { opacity: 1; transform: translateY(0%) skewY(0); }
+}
+@keyframes appear4 {
+	from { opacity: 0; transform: translate(-1%,  0); }
+	to { opacity: 1; transform: translate(0, 0); }
+}
+
+@mixin appearanim($name, $i,  $time: .3s) {
+	$delay: .3s;
+	$initDelay: 0.3s;
+	animation: $name ($time * $i) ($initDelay + $delay * $i) ease-out both;
+  }
+
+.appear { opacity: 0; }
+.appear-a-1 { @include appearanim(appear, 1); }
+.appear-a-2 { @include appearanim(appear, 2); }
+
+.appear-a-3 { @include appearanim(appear2, 3); }
+.appear-a-4 { @include appearanim(appear2, 3.2); }
+.appear-a-5 { @include appearanim(appear2, 3.4); }
+.appear-a-6 { @include appearanim(appear2, 3.6); }
+.appear-a-7 { @include appearanim(appear2, 3.8); }
+
+.appear-a-8 { 
+	transform-origin: left bottom;
+	@include appearanim(appear3, 1, 1s);
+}
+.appear-a-9 { @include appearanim(appear4, 2, 1s); }
+.appear-a-9a { 
+	transform-origin: left bottom;
+	@include appearanim(appear3, 4, .3s); 
+}
+
