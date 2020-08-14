@@ -21,6 +21,16 @@
         "design",
         "ideas"
       ]
+    },
+    {
+      "login": "GiovanniCardamone",
+      "name": "Giovanni Cardamone",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5117748?v=4",
+      "profile": "https://github.com/GiovanniCardamone",
+      "contributions": [
+        "data",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7
