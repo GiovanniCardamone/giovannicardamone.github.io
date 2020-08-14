@@ -25,6 +25,7 @@
     "typescript": "^3.9.7",
     "use-cannon": "^0.5.0"
   },
+  "homepage": "https://giovannicardamone.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && rm -rf docs  && mv build docs",
@@ -45,5 +46,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "contributors": [
+    {
+      "name": "Giovanni Cardamone",
+      "email": "g.cardamone2@gmail.com",
+      "url": "https://giovannicardamone.github.io"
+    },
+    {
+      "name": "Gennaro Bosone",
+      "email": "gennaro.bs@gmail.com",
+      "url": "https://www.desidus.it"
+    }
+  ],
+  "devDependencies": {
+    "all-contributors-cli": "^6.17.1"
   }
 }
