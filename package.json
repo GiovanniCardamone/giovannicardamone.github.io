@@ -28,9 +28,9 @@
   "homepage": "https://giovannicardamone.github.io/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf docs  && mv build docs",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "publish": "date >> CHANGELOG && rm -rf docs && npm run build && mv build docs && git add . && git commit -m 'publishing' && git push"
+    "publish": "rm -rf docs && npm run build && mv build docs && git add . && git commit -m 'publishing' && git push && date >> CHANGELOG"
   },
   "eslintConfig": {
     "extends": "react-app"
