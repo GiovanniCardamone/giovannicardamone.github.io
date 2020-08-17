@@ -1,8 +1,6 @@
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+# giovannicardamone.github.io
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+Preview available here: [https://giovannicardamone.github.io/](https://giovannicardamone.github.io/)
 
 ## Contributors ✨
 
