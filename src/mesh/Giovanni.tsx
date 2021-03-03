@@ -1,13 +1,14 @@
 import React, { useState, useRef } from 'react'
 import { useFrame } from 'react-three-fiber'
-import { useBox } from 'use-cannon'
+// import { useBox } from 'use-cannon'
 
-import { useLoader } from 'react-three-fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+// import { useLoader } from 'react-three-fiber'
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-interface GiovanniProps {}
+// interface GiovanniProps {}
 
-export default function Giovanni({}: GiovanniProps) {
+export default function Giovanni() {
+  // {}: GiovanniProps) {
   const mesh = useRef()
 
   // Set up state for the hovered and active state
@@ -28,7 +29,10 @@ export default function Giovanni({}: GiovanniProps) {
       onPointerOut={(e) => setHover(false)}
     >
       <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
-      <meshStandardMaterial attach='material' color={hovered ? 'hotpink' : 'orange'} />
+      <meshStandardMaterial
+        attach='material'
+        color={hovered ? 'hotpink' : 'orange'}
+      />
     </mesh>
   )
 }
